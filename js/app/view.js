@@ -33,11 +33,6 @@ function view(){
                                 </div>
                                 <button class="taskDelete"></button>
                                     ${renderStatus(data)}
-<!--                                <select class="form-select" aria-label="Default select example">-->
-<!--                                    <option selected>Без статуса</option>-->
-<!--                                    <option value="1">В работе</option>-->
-<!--                                    <option value="2">Завершен</option>-->
-<!--                                </select>-->
                             </div>`
         return wrapper;
     }

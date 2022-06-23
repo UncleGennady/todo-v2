@@ -11,7 +11,6 @@ function controller(view, model, config){
     const todos = getElement(document, todoContainer);
     let dataToDelete = null;
     const classDeleteEl = config.classDeleteEl;
-    const selectSelector = config.selectSelector;
 
     model.init(todoKey);
     view.init(form);
@@ -54,6 +53,7 @@ function controller(view, model, config){
         const id = getID(event.target);
         model.setStatus(data,id,status);
        }
+
     todos.addEventListener('click', deleteHandler);
     form.addEventListener(submit, submitHandler);
     document.addEventListener('DOMContentLoaded',loadedHandler);

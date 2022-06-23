@@ -6,7 +6,6 @@ const config ={
     inputsSelector:'input, textarea',
     event: 'submit',
     classDeleteEl : 'taskDelete',
-    selectSelector: 'form-selector',
 }
 
 void function (){
