@@ -13,7 +13,6 @@ function controller(view, model, config){
     const classDeleteEl = config.classDeleteEl;
     const selectSelector = config.selectSelector;
 
-    console.log(todos);
     model.init(todoKey);
     view.init(form);
     const getDataFromInputs = inputs =>{
@@ -21,18 +20,14 @@ function controller(view, model, config){
         const data = Array.from(inputs).reduce((acc,item)=>{
         acc[item.name] = item.value;
         return acc},{});
-        console.log(data);
         return data;
         }
-    const setData = model.setData();
     const submitHandler = event => {
         event.preventDefault();
         event.stopPropagation();
         const data = getDataFromInputs(inputs);
-        const savedData = setData(data);
-        console.log(savedData);
+        const savedData = model.setData(data);
         if(!savedData.success) throw new Error('cannot save data');
-        // dataToDelete = savedData.fullData;
         view.renderTodoElement(savedData.data);
         view.clearForm();
 
@@ -49,22 +44,10 @@ function controller(view, model, config){
         const data = model.getData();
         if(!data) return;
         const id =  +(view.deleteTodoElement(event.target))
-        console.log(id);
-
-        for (let el of data) {
-            if(el.id === id) data.splice(data.indexOf(el), 1);
-        }
-        dataToDelete.forEach(item => {if(item.id === id) dataToDelete.splice(dataToDelete.indexOf(item), 1)});
-        localStorage.removeItem(todoKey);
-        if(!!data.length) localStorage.setItem(todoKey,JSON.stringify(dataToDelete));
+        model.reloadData(dataToDelete, id);
     }
 
-    // const selectStatus = (event)
     todos.addEventListener('click', deleteHandler);
     form.addEventListener(submit, submitHandler);
     document.addEventListener('DOMContentLoaded',loadedHandler);
-
-
-
-
 }
