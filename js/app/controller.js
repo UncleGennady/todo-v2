@@ -46,8 +46,16 @@ function controller(view, model, config){
         const id =  +(view.deleteTodoElement(event.target))
         model.reloadData(dataToDelete, id);
     }
-
+    const statusHandler = (event)=>{
+        const value = +event.target.value
+        if(!value) return;
+        const status = value === 1 ? 'pending' : 'completed' ;
+        const data = model.getData()
+        const id = getID(event.target);
+        model.setStatus(data,id,status);
+       }
     todos.addEventListener('click', deleteHandler);
     form.addEventListener(submit, submitHandler);
     document.addEventListener('DOMContentLoaded',loadedHandler);
+    todos.addEventListener('click',statusHandler);
 }

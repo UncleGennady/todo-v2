@@ -1,6 +1,26 @@
 'use strict';
 
 function view(){
+
+    function renderStatus(data){
+        if(data.status === 'no-status') return (` <select class="form-select" aria-label="Default select example">
+                                    <option selected>Без статуса</option>
+                                    <option value="1">В работе</option>
+                                    <option value="2">Завершен</option>
+                                </select>`);
+        if(data.status === 'pending') return (` <select class="form-select" aria-label="Default select example">
+                                    <option >Без статуса</option>
+                                    <option selected value="1">В работе</option>
+                                    <option value="2">Завершен</option>
+                                </select>`);
+        if(data.status === 'completed') return (` <select class="form-select" aria-label="Default select example">
+                                    <option >Без статуса</option>
+                                    <option value="1">В работе</option>
+                                    <option selected value="2">Завершен</option>
+                                </select>`);
+
+    }
+
     const todoContainer = config.todoContainer
     function createTodoElement(data){
         const wrapper = document.createElement('div');
@@ -12,11 +32,12 @@ function view(){
                                     <div class="taskDescription">${data.description}</div>
                                 </div>
                                 <button class="taskDelete"></button>
-                                <select class="form-select" aria-label="Default select example">
-                                    <option value="1" selected>Без статуса</option>
-                                    <option value="2">В работе</option>
-                                    <option value="3">Завершен</option>
-                                </select>
+                                    ${renderStatus(data)}
+<!--                                <select class="form-select" aria-label="Default select example">-->
+<!--                                    <option selected>Без статуса</option>-->
+<!--                                    <option value="1">В работе</option>-->
+<!--                                    <option value="2">Завершен</option>-->
+<!--                                </select>-->
                             </div>`
         return wrapper;
     }
@@ -36,9 +57,8 @@ function view(){
             data.forEach(item =>todoList.append(createTodoElement(item)))
         },
         deleteTodoElement(button){
-            const todoEl = button.parentElement.parentElement
-            const id = todoEl.getAttribute('data-todo-id')
-            console.log(id);
+            const todoEl = button.parentElement.parentElement;
+            const id = getID(button);
             if(!id) return;
             todoEl.remove()
             return id;
