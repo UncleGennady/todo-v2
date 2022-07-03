@@ -11,6 +11,7 @@ function controller(view, model, config){
     const todos = getElement(document, todoContainer);
     let dataToDelete = null;
     const classDeleteEl = config.classDeleteEl;
+    const statusValue = config.statusValue;
 
     model.init(todoKey);
     view.init(form);
@@ -48,7 +49,7 @@ function controller(view, model, config){
     const statusHandler = (event)=>{
         const value = +event.target.value
         if(!value) return;
-        const status = value === 1 ? 'pending' : 'completed' ;
+        const status = statusValue[value-1];
         const data = model.getData()
         const id = getID(event.target);
         model.setStatus(data,id,status);

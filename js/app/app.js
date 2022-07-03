@@ -6,6 +6,7 @@ const config ={
     inputsSelector:'input, textarea',
     event: 'submit',
     classDeleteEl : 'taskDelete',
+    statusValue:['no-status','pending','completed']
 }
 
 void function (){

@@ -4,19 +4,19 @@ function view(){
 
     function renderStatus(data){
         if(data.status === 'no-status') return (` <select class="form-select" aria-label="Default select example">
-                                    <option selected>Без статуса</option>
-                                    <option value="1">В работе</option>
-                                    <option value="2">Завершен</option>
+                                    <option selected value="1">Без статуса</option>
+                                    <option value="2">В работе</option>
+                                    <option value="3">Завершен</option>
                                 </select>`);
         if(data.status === 'pending') return (` <select class="form-select" aria-label="Default select example">
-                                    <option >Без статуса</option>
-                                    <option selected value="1">В работе</option>
-                                    <option value="2">Завершен</option>
+                                    <option value="1">Без статуса</option>
+                                    <option selected value="2">В работе</option>
+                                    <option value="3">Завершен</option>
                                 </select>`);
         if(data.status === 'completed') return (` <select class="form-select" aria-label="Default select example">
-                                    <option >Без статуса</option>
-                                    <option value="1">В работе</option>
-                                    <option selected value="2">Завершен</option>
+                                    <option value="1">Без статуса</option>
+                                    <option value="2">В работе</option>
+                                    <option selected value="3">Завершен</option>
                                 </select>`);
 
     }
